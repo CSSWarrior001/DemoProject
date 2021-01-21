@@ -1,0 +1,178 @@
+/*
+::Table Of Contents
+
+1.) Global Settings And Bootstrap Overwrite
+2.) Header Section Style
+    2.1) Toggle Menu Animation
+3.) Footer Section Style
+4.) Content Area Style
+5.) Media Query Conditions
+=========================================================*/
+
+/*
+1.) Global Settings And Bootstrap Overwrite
+=========================================================*/
+:root {
+    --light: #FFF;
+    --orange: #ee3100;
+    --baseColor: #333333;
+    --semiTransparent: rgba(0,0,0,0.5);
+}
+* {
+    transition: all linear 0.3s;
+}
+body {
+    font-family: 'Montserrat', -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji", sans-serif;
+    font-size:0.8125rem;
+    font-weight: 400;
+    color:var(--baseColor);
+}
+.container {
+    max-width: 1200px;
+    width:100%;
+}
+section:nth-child(odd) {
+    background-color: var(--dark);
+}
+.navbar.scrolled, .animatedIcon span, .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus, .navbar-nav .nav-link.active, .scrollTop {
+    background-color: var(--light);
+}
+.scrolled .animatedIcon span, section:nth-child(even) {
+    background-color: var(--orange)
+}
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus, .navbar-nav .nav-link.active, .scrollTop {
+    color: var(--orange)
+}
+.drop-shadow, .scrolled {
+    box-shadow: 0px 0px 3px var(--semiTransparent);
+}
+/*
+2.) Header Section Style
+=========================================================*/
+.navbar {
+    z-index: 999    ;
+}
+.navbar-brand {
+    padding-top:1rem;
+    padding-bottom: 1rem;
+    transform-origin: left center;
+}
+.scrolled .navbar-brand {
+    padding-top:0;
+    padding-bottom: 0;
+    transform: scale(0.8);
+}
+.navbar-nav .nav-link {
+    color:#fff;
+    text-transform: uppercase;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin:1px;
+}
+    /*
+    2.1) Toggle Menu Animation
+    =====================================================*/
+    .animatedIcon {
+        width: 30px;
+        height: 20px;
+        position: relative;
+        margin: 0px;
+        transform: rotate(0deg);
+        transition: .5s ease-in-out;
+        cursor: pointer;
+    }
+    .animatedIcon span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+    }
+    .animatedIcon span:nth-child(1) {
+        top: 0px;
+    }
+    .animatedIcon span:nth-child(2), .animatedIcon span:nth-child(3) {
+        top: 10px;
+    }
+    .animatedIcon span:nth-child(4) {
+        top: 20px;
+    }
+    .animatedIcon.open span:nth-child(1) {
+        top: 11px;
+        width: 0%;
+        left: 50%;
+    }
+    .animatedIcon.open span:nth-child(2) {
+        transform: rotate(45deg);
+    }
+    .animatedIcon.open span:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+    .animatedIcon.open span:nth-child(4) {
+        top: 11px;
+        width: 0%;
+        left: 50%;
+    }
+/*
+3.) Footer Section Style
+=========================================================*/
+.scrollTop {
+	right: 0.5rem;
+	bottom: 0.5rem;
+	opacity: 0;
+	width: 40px;
+	height: 40px;
+	font-size:1rem;
+	cursor: pointer;
+}
+/*
+4.) Content Area Style
+=========================================================*/
+section {
+    min-height: 100vh;
+}
+/*
+5.) Media Query Conditions
+=========================================================*/
+@media only screen and (min-width:992px) {
+    .navbar-expand-lg .navbar-collapse, .navbar-collapse {
+        background-color: transparent;
+    }
+    .navbar-expand-lg .navbar-nav .nav-item:last-child .nav-link {
+        padding-right: 0;
+    }
+    .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus, .navbar-nav .nav-link.active {
+        background-color: transparent;
+        color:var(--light);
+    }
+    .navbar.scrolled .nav-link, .navbar.scrolled .nav-link:hover, .navbar.scrolled .nav-link:focus {
+        color:var(--orange);
+    }
+    .navbar .nav-item {
+        position: relative;
+    }
+    .navbar .nav-link:after {
+        content: '';
+        width:100%;
+        height: 3px;
+        background-color:var(--light);
+        opacity: 0;
+        left:0.5rem;
+        bottom: 0;
+        right: 0.5rem;
+        display: block;
+        transform: translateY(1rem);
+        transition: all ease-in 0.3s;
+    }
+    .navbar.scrolled .nav-link:after {
+        background-color: var(--orange);
+    }
+    .navbar .nav-item:hover > .nav-link:after, .navbar .nav-item:focus > .nav-link:after, .navbar .nav-item:hover > .nav-link.active:after, .navbar .nav-item > .nav-link.active:after {
+        opacity: 1;
+        transform: translateY(0.5rem);
+    }
+}
